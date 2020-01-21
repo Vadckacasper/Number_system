@@ -37,39 +37,6 @@ namespace Number_system.Properties
             return false;
         }
 
-        public string Scheme_transfer(int Numerat_Input, int Numerat_Conclusion, string str)
-        {
-            Convert_in_arr(str);
-            if (!Chek(Numerat_Input)) 
-            {
-                Conclusion = null;
-                if (Numerat_Input != 10)
-                {
-                    in_decimal(Numerat_Input);
-                    if (Numerat_Conclusion != 10)
-                    {
-                        in_binari(Numerat_Conclusion);
-                        Conclusion = String.Join("", arr);
-                    }
-                    else
-                        Conclusion = Input.ToString();
-                    
-                }else
-                {
-                    Input = Int32.Parse(str);
-                    arr = null;
-                    if (Numerat_Conclusion != 10)
-                    {
-                        in_binari(Numerat_Conclusion);
-                        Conclusion = String.Join("", arr);
-                    }
-                    else
-                        Conclusion = Input.ToString();
-                }
-                
-            }
-            return Conclusion;
-        }
 
         private void in_decimal(int Numerat_Input)
         {
@@ -105,6 +72,42 @@ namespace Number_system.Properties
                 arr[norm.Count - 1 - i] = norm[i];
             }
             
+        }
+
+        //Формирует порядок использования функций 
+        public string Scheme_transfer(int Numerat_Input, int Numerat_Conclusion, string str)
+        {
+            Convert_in_arr(str);
+            if (!Chek(Numerat_Input))
+            {
+                Conclusion = null;
+                if (Numerat_Input != 10)
+                {
+                    in_decimal(Numerat_Input);
+                    if (Numerat_Conclusion != 10)
+                    {
+                        in_binari(Numerat_Conclusion);
+                        Conclusion = String.Join("", arr);
+                    }
+                    else
+                        Conclusion = Input.ToString();
+
+                }
+                else
+                {
+                    Input = Int32.Parse(str);
+                    arr = null;
+                    if (Numerat_Conclusion != 10)
+                    {
+                        in_binari(Numerat_Conclusion);
+                        Conclusion = String.Join("", arr);
+                    }
+                    else
+                        Conclusion = Input.ToString();
+                }
+
+            }
+            return Conclusion;
         }
 
 
