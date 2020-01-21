@@ -33,10 +33,10 @@ namespace Number_system
             Numerat_Input = (int)Numeration.Value;
             Numerat_Conclusion = (int)Numeration_Con.Value;
 
-            tmp.Scheme_transfer(Numerat_Input, Numerat_Conclusion, str);
+            
 
-            Conclusion_label.Text = Convert.ToString(tmp.Conclusion);
-            tmp.Conclusion = 0;
+            Conclusion_label.Text = tmp.Scheme_transfer(Numerat_Input, Numerat_Conclusion, str); 
+            
         }
     }
 }

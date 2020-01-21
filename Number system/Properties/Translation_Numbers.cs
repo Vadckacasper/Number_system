@@ -12,7 +12,8 @@ namespace Number_system.Properties
     {
         private int[] arr;
         private int Input;
-        public int Conclusion = 0;
+        private string Conclusion;
+
         private void Convert_in_arr(string str)
         {
             arr = new int[str.Length];
@@ -28,42 +29,83 @@ namespace Number_system.Properties
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i] >= Numerat_Input)
+                {
+                    Conclusion = "Ошибка!";
                     return true;
+                }
             }
             return false;
         }
 
-        public void Scheme_transfer (int Numerat_Input, int Numerat_Conclusion, string str)
+        public string Scheme_transfer(int Numerat_Input, int Numerat_Conclusion, string str)
         {
             Convert_in_arr(str);
             if (!Chek(Numerat_Input)) 
             {
-                if (Numerat_Input < Numerat_Conclusion)
+                Conclusion = null;
+                if (Numerat_Input != 10)
                 {
+                    in_decimal(Numerat_Input);
+                    if (Numerat_Conclusion != 10)
+                    {
+                        in_binari(Numerat_Conclusion);
+                        Conclusion = String.Join("", arr);
+                    }
+                    else
+                        Conclusion = Input.ToString();
                     
-                    in_Numerat(Numerat_Input);
-                }
-                if (Numerat_Input > Numerat_Conclusion)
+                }else
                 {
                     Input = Int32.Parse(str);
+                    arr = null;
+                    if (Numerat_Conclusion != 10)
+                    {
+                        in_binari(Numerat_Conclusion);
+                        Conclusion = String.Join("", arr);
+                    }
+                    else
+                        Conclusion = Input.ToString();
                 }
-
-
+                
             }
+            return Conclusion;
         }
 
-        private void in_Numerat (int Numerat_Input)
+        private void in_decimal(int Numerat_Input)
         {
-
+            Input = 0;
                 for (int i = 0; i < arr.Length; i++)
                 {
                     if (arr[i] > 0)
                     {
-                        Conclusion += arr[i] * (int)Math.Pow(Numerat_Input, (arr.Length-i-1));
+                       Input += arr[i] * (int)Math.Pow(Numerat_Input, (arr.Length-i-1));
                     }
                 }
+                
         }
 
+        private void in_binari (int Numerat_Conclusion)
+        {
+            int temp = 0;
+            List<int> temp_arr = new List<int>();
+            while (Input > 0)
+            {
+                temp = Input % Numerat_Conclusion;
+                Input = Input / Numerat_Conclusion;
+                temp_arr.Add(temp);
+            }
+            obrat(temp_arr);
+        }
+        
+        private void obrat(List<int> norm)
+        {
+            arr = new int[norm.Count];
+            for (int i = norm.Count - 1; i >= 0; i--)
+            {
+                arr[norm.Count - 1 - i] = norm[i];
+            }
+            
+        }
 
 
     } 
